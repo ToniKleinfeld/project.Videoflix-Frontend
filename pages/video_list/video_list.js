@@ -247,9 +247,9 @@ function loadVideo(id, resolution) {
             xhr.withCredentials = true
         },
         // BUFFER-MANAGEMENT
-        maxBufferLength: 30,
-        maxMaxBufferLength: 600,
-        maxBufferSize: 60 * 1000 * 1000,
+        maxBufferLength: 45,
+        maxMaxBufferLength: 900,
+        maxBufferSize: 90 * 1000 * 1000,
         maxBufferHole: 0.5,
         backBufferLength: 90,
 
@@ -310,13 +310,17 @@ function loadVideo(id, resolution) {
     hls.attachMedia(videoContainer);
 
     hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        videoContainer.play().catch(() => {
-            console.log("User interaction required to start playback");
-        });
+        setTimeout(() => {
+            videoContainer.play().catch(() => {
+                console.log("User interaction required to start playback");
+            });
+        }, 2000)
     });
 
     hls.on(Hls.Events.ERROR, (event, data) => {
-        console.error("HLS error:", data);
+        if (data.fatal) {
+            console.error("HLS fatal error:", data);
+        }
     });
 }
 
@@ -385,9 +389,9 @@ function loadVideoInOverlay(id, resolution) {
             xhr.withCredentials = true
         },
         // BUFFER-MANAGEMENT
-        maxBufferLength: 30,
-        maxMaxBufferLength: 600,
-        maxBufferSize: 60 * 1000 * 1000,
+        maxBufferLength: 45,
+        maxMaxBufferLength: 900,
+        maxBufferSize: 90 * 1000 * 1000,
         maxBufferHole: 0.5,
         backBufferLength: 90,
 
@@ -449,13 +453,17 @@ function loadVideoInOverlay(id, resolution) {
     overlayHls.attachMedia(overlayVideoContainer);
 
     overlayHls.on(Hls.Events.MANIFEST_PARSED, () => {
-        overlayVideoContainer.play().catch(() => {
+        setTimeout(() => {
+            overlayVideoContainer.play().catch(() => {
             console.log("User interaction required to start overlay playback");
         });
+        }, 2000)
     });
 
     overlayHls.on(Hls.Events.ERROR, (event, data) => {
-        console.error("Overlay HLS error:", data);
+        if (data.fatal) {
+            console.error("HLS fatal error:", data);
+        }
     });
 }
 
