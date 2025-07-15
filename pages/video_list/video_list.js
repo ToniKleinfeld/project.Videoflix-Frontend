@@ -245,7 +245,66 @@ function loadVideo(id, resolution) {
     hls = new Hls({
         xhrSetup: function (xhr) {
             xhr.withCredentials = true
-        }
+        },
+        // BUFFER-MANAGEMENT
+        maxBufferLength: 30,
+        maxMaxBufferLength: 600,
+        maxBufferSize: 60 * 1000 * 1000,
+        maxBufferHole: 0.5,
+        backBufferLength: 90,
+
+        // STALL-DETECTION
+        lowBufferWatchdogPeriod: 0.5,
+        highBufferWatchdogPeriod: 2,
+        nudgeOffset: 0.1,
+        nudgeMaxRetry: 3,
+        maxFragLookUpTolerance: 0.25,
+
+        // PERFORMANCE
+        enableWorker: true,
+        startFragPrefetch: true,
+        testBandwidth: true,
+        enableSoftwareAES: true,
+
+        // SEEK
+        maxSeekHole: 2,
+        seekHoleNudgeDuration: 0.01,
+
+        // NETWORK-CONFIGURATION
+        manifestLoadingTimeOut: 10000,
+        manifestLoadingMaxRetry: 4,
+        levelLoadingTimeOut: 10000,
+        levelLoadingMaxRetry: 4,
+        fragLoadingTimeOut: 20000,
+        fragLoadingMaxRetry: 6,
+
+        // APPEND-CONFIGURATION
+        appendErrorMaxRetry: 3,
+        loaderMaxRetry: 2,
+        loaderMaxRetryTimeout: 64000,
+
+        // ADVANCED SETTINGS
+        lowLatencyMode: false,
+        enableCEA708Captions: false,
+        stretchShortVideoTrack: false,
+        forceKeyFrameOnDiscontinuity: true,
+
+        // LIVE-STREAM-CONFIGURATION
+        liveSyncDurationCount: 3,
+        liveMaxLatencyDurationCount: 10,
+        liveDurationInfinity: false,
+
+        // FRAGMENT-DRIFT-TOLERANCE
+        maxAudioFramesDrift: 1,
+        maxVideoFramesDrift: 1,
+
+        // DEBUG
+        debug: false,
+
+        // METADATA-CONFIGURATION
+        enableDateRangeMetadataCues: false,
+        enableEmsgMetadataCues: false,
+        enableID3MetadataCues: false
     });
     hls.loadSource(`${API_BASE_URL}${URL_TO_INDEX_M3U8(id, resolution)}`);
     hls.attachMedia(videoContainer);
@@ -324,7 +383,66 @@ function loadVideoInOverlay(id, resolution) {
     overlayHls = new Hls({
         xhrSetup: function (xhr) {
             xhr.withCredentials = true
-        }
+        },
+        // BUFFER-MANAGEMENT
+        maxBufferLength: 30,
+        maxMaxBufferLength: 600,
+        maxBufferSize: 60 * 1000 * 1000,
+        maxBufferHole: 0.5,
+        backBufferLength: 90,
+
+        // STALL-DETECTION
+        lowBufferWatchdogPeriod: 0.5,
+        highBufferWatchdogPeriod: 2,
+        nudgeOffset: 0.1,
+        nudgeMaxRetry: 3,
+        maxFragLookUpTolerance: 0.25,
+
+        // PERFORMANCE
+        enableWorker: true,
+        startFragPrefetch: true,
+        testBandwidth: true,
+        enableSoftwareAES: true,
+
+        // SEEK
+        maxSeekHole: 2,
+        seekHoleNudgeDuration: 0.01,
+
+        // NETWORK-CONFIGURATION
+        manifestLoadingTimeOut: 10000,
+        manifestLoadingMaxRetry: 4,
+        levelLoadingTimeOut: 10000,
+        levelLoadingMaxRetry: 4,
+        fragLoadingTimeOut: 20000,
+        fragLoadingMaxRetry: 6,
+
+        // APPEND-CONFIGURATION
+        appendErrorMaxRetry: 3,
+        loaderMaxRetry: 2,
+        loaderMaxRetryTimeout: 64000,
+
+        // ADVANCED SETTINGS
+        lowLatencyMode: false,
+        enableCEA708Captions: false,
+        stretchShortVideoTrack: false,
+        forceKeyFrameOnDiscontinuity: true,
+
+        // LIVE-STREAM-CONFIGURATION
+        liveSyncDurationCount: 3,
+        liveMaxLatencyDurationCount: 10,
+        liveDurationInfinity: false,
+
+        // FRAGMENT-DRIFT-TOLERANCE
+        maxAudioFramesDrift: 1,
+        maxVideoFramesDrift: 1,
+
+        // DEBUG
+        debug: false,
+
+        // METADATA-CONFIGURATION
+        enableDateRangeMetadataCues: false,
+        enableEmsgMetadataCues: false,
+        enableID3MetadataCues: false
     });
 
     overlayHls.loadSource(`${API_BASE_URL}${URL_TO_INDEX_M3U8(id, resolution)}`);
