@@ -92,8 +92,10 @@ function getToastHTML(msg, error) {
     }
 
     const icon = error
-        ? '<img src="/assets/icons/error.svg" alt="Error" width="24" height="24">'
-        : '<img src="/assets/icons/check_circle.svg" alt="Success" width="24" height="24">';
+        ? '<img src="/Videoflix/assets/icons/error.svg" alt="Error" width="24" height="24">'
+        : '<img src="/Videoflix/assets/icons/check_circle.svg" alt="Success" width="24" height="24">';
+
+        console.log("Hier Ui_helper",icon);
 
     return `<div class="toast_msg_left d_flex_cc_gm">
                 ${icon}
