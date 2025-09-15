@@ -73,7 +73,7 @@ textarea {
     display: inline-block;
     width: 16px;
     height: 16px;
-    background-image: url("/assets/img/warning.png");
+    background-image: url("../../assets/img/warning.png");
     background-size: contain;
     background-repeat: no-repeat;
     flex-shrink: 0;
